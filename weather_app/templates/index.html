@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+     <div class="container text-center">
+        <h1>Weather App</h1>
+        <form action="" method="post" class="input-group">
+            {% csrf_token %}
+            <input type="text" name="city" id="city" placeholder="Enter the city name ...." class="form-control">
+            
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            {% for message in messages%}
+                <h5><em>{{message}}</em></h5>
+            {% endfor %}
+        </form>
+
+        <div class="fw-bold shadow-sm mt-4 p-3 m-auto " style="width:25rem; border-radius:0.5rem">
+            {% if data.city is not None %}
+            <div class="d-inline-flex gap-2" >
+            <p class="fs-2">{{data.city | capfirst}}</p>
+            <p><img src="http://openweathermap.org/img/w/{{data.weather_icon}}.png" class="img-fluid " alt="">{{data.weather_description | capfirst}} </p>
+            </div><br>
+            <p>Temperature : {{data.weather_temp}} &#8451</p>
+            <div class="d-inline-flex gap-3" >
+                <p>Pressure : {{data.weather_pressure}} hPa</p>
+                <p>Humidity : {{data.weather_humidity}} %</p>
+            </div><br>
+            <div class="d-inline-flex gap-3">
+                <p>Sun Rise : {{data.sunrise}} am </p>
+                <p>Sun Set : {{data.sunset}} pm </p>
+            </div>
+            {% endif %}
+        </div>
+     </div>
+
+    
+</body>
+</html>
