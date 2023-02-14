@@ -16,14 +16,13 @@
         <h1>Weather App</h1>
         <form action="" method="post" class="input-group">
             {% csrf_token %}
-            <input type="text" name="city" id="city" placeholder="Enter the city name ...." class="form-control">
-            
+            {% comment %} <input type="text" name="city" id="city" placeholder="Enter the city name ...." class="form-control"> {% endcomment %}
+            {{ form.name }}
             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-            {% for message in messages%}
-                <h5><em>{{message}}</em></h5>
-            {% endfor %}
+           
         </form>
-
+        
+        {% for data in weather_data %}
         <div class="fw-bold shadow-sm mt-4 p-3 m-auto " style="width:25rem; border-radius:0.5rem">
             {% if data.city is not None %}
             <div class="d-inline-flex gap-2" >
@@ -35,12 +34,18 @@
                 <p>Pressure : {{data.weather_pressure}} hPa</p>
                 <p>Humidity : {{data.weather_humidity}} %</p>
             </div><br>
-            <div class="d-inline-flex gap-3">
+            {% comment %} <div class="btn btn-primary">
+                <a href="{% url 'delete_city' data.city %}">
+                   <button class="delete"></button>
+                </a>
+            </div> {% endcomment %}
+            {% comment %} <div class="d-inline-flex gap-3">
                 <p>Sun Rise : {{data.sunrise}} am </p>
                 <p>Sun Set : {{data.sunset}} pm </p>
-            </div>
+            </div> {% endcomment %}
             {% endif %}
         </div>
+        {% endfor  %}
      </div>
 
     
