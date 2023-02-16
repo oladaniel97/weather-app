@@ -28,6 +28,7 @@ def index(request):
     #     print(api_my)
 
         data = {
+            'id': id,
             'city': city.name,
             'weather_description': api_my['weather'][0]['description'],
             'weather_temp': api_my['main']['temp'],
@@ -40,10 +41,16 @@ def index(request):
         }
         weather_data.append(data)
 
+        if city is  weather_data:
+            pass
+
 
 
     return render(request, 'index.html', {'weather_data':weather_data,'form':form})
 
-# def delete_city(request, city): 
-#     City.objects.get(name=city).delete()
-#     return redirect(request, 'index',{})
+def delete(request, city):
+    pos=City.objects.get(name=city)
+    pos.delete()
+    
+    
+    return redirect('/?id=0')

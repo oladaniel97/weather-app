@@ -34,16 +34,17 @@
                 <p>Pressure : {{data.weather_pressure}} hPa</p>
                 <p>Humidity : {{data.weather_humidity}} %</p>
             </div><br>
-            {% comment %} <div class="btn btn-primary">
-                <a href="{% url 'delete_city' data.city %}">
-                   <button class="delete"></button>
-                </a>
-            </div> {% endcomment %}
+           
             {% comment %} <div class="d-inline-flex gap-3">
                 <p>Sun Rise : {{data.sunrise}} am </p>
                 <p>Sun Set : {{data.sunset}} pm </p>
             </div> {% endcomment %}
             {% endif %}
+            <div class="btn btn-primary">
+                <a href="delete/{{ data.city }}">
+                   <button class="delete"></button>
+                </a>
+            </div>
         </div>
         {% endfor  %}
      </div>
