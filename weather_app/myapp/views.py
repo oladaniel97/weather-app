@@ -28,7 +28,7 @@ def index(request):
     #     print(api_my)
 
         data = {
-            'id': id,
+            'id': city.id,
             'city': city.name,
             'weather_description': api_my['weather'][0]['description'],
             'weather_temp': api_my['main']['temp'],
